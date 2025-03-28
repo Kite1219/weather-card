@@ -1,4 +1,22 @@
 import { getCity as data } from "./script.js";
+import rain from './images/rain.png?url';
+import clear from './images/clear.png?url';
+import clouds from './images/clouds.png?url';
+import drizzle from './images/drizzle.png?url';
+import mist from './images/mist.png?url';
+import snow from './images/snow.png?url';
+import humidity from './images/humidity.png?url';
+import wind from './images/wind.png?url';
+
+const weatherIcons = {
+  rain,
+  clear,
+  clouds,
+  drizzle,
+  mist,
+  snow,
+};
+console.log(weatherIcons.rain)
 
 class Ui {
   constructor() {
@@ -18,7 +36,8 @@ class Ui {
       this.icon = document.createElement("img");
       this.icon.className = "weather-icon";
     }
-    this.icon.src = `images/${weatherCondition}.png`;
+    console.log(weatherCondition);
+    this.icon.src = weatherIcons[weatherCondition];
   }
 
   clearHTML() {
@@ -32,7 +51,7 @@ class Ui {
 
     this.weather.prepend(this.icon);
 
-    const celsiusDegree = (degree - 273.15).toFixed(2);
+    const celsiusDegree = (degree - 273.15).toFixed(0);
     const html = `
         <h1 class="temp">${celsiusDegree}°C</h1>
         <h2 class="city">${cityName}</h2>
